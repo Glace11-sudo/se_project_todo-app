@@ -19,4 +19,4 @@ To accomplish this, the functionality methods are stored inside the FormValidato
 
 This project is deployed on GitHub Pages:
 
-http://127.0.0.1:5500/index.html
+https://github.com/Glace11-sudo/se_project_todo-app/settings/pages
