@@ -36,13 +36,23 @@ class Todo {
     this._todoLabel.setAttribute("for", `todo-${this._data.id}`);
   }
 
+  _getTodoElements() {
+    return {
+      nameEl: this._todoElement.querySelector(".todo__name"),
+      dateEl: this._todoElement.querySelector(".todo__date"),
+      deleteBtn: this._todoElement.querySelector(".todo__delete-btn"),
+    };
+  }
+
   getView() {
     this._todoElement = this._templateElement.content
       .querySelector(".todo")
       .cloneNode(true);
-    this._todoNameEl = this._todoElement.querySelector(".todo__name");
-    this._todoDate = this._todoElement.querySelector(".todo__date");
-    this._todoDeleteBtn = this._todoElement.querySelector(".todo__delete-btn");
+
+    const { nameEl, dateEl, deleteBtn } = this._getTodoElements();
+    this._todoNameEl = nameEl;
+    this._todoDate = dateEl;
+    this._todoDeleteBtn = deleteBtn;
 
     this._todoNameEl.textContent = this._data.name;
     this._generateDueDate();
