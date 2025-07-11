@@ -26,16 +26,20 @@ class FormValidator {
     errorElement.textContent = "";
   }
 
-  _hasInvalidInput(inputList) {
-    return inputList.some((inputElement) => {
+  _hasInvalidInput() {
+    return this._inputList.some((inputElement) => {
       return !inputElement.validity.valid;
     });
   }
 
+  _disableSubmitButton() {
+    this._buttonElement.classList.add(this._inactiveButtonClass);
+    this._buttonElement.disabled = true;
+  }
+
   _toggleButtonState() {
     if (this._hasInvalidInput(this._inputList)) {
-      this._buttonElement.classList.add(this._inactiveButtonClass);
-      this._buttonElement.disabled = true;
+      this._disableSubmitButton();
     } else {
       this._buttonElement.classList.remove(this._inactiveButtonClass);
       this._buttonElement.disabled = false;
@@ -78,11 +82,10 @@ class FormValidator {
 
   resetValidation() {
     this._inputList.forEach((input) => {
-      input.value = "";
+      this._formEl.reset();
       this._hideInputError(input);
     });
-    this._buttonElement.disabled = true;
-    this._inactiveButtonClass.classList.add(this._inactiveButtonClass);
+    this._disableSubmitButton();
   }
 }
 
