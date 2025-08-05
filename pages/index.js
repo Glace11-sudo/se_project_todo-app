@@ -41,15 +41,16 @@ const generateTodo = (data) => {
 
 const renderTodo = (item) => {
   const todo = generateTodo(item);
-  todosList.append(todo);
+  section.addItem(todo);
+  todoCounter.updateTotal(true);
 };
 
 const section = new Section({
   items: initialTodos,
   renderer: (item) => {
-    const element = generateTodo(item);
-    section.addItem(element);
+    renderTodo(item);
   },
+
   containerSelector: ".todos__list",
 });
 section.renderItems();
@@ -66,7 +67,7 @@ function handleDelete(completed) {
   if (completed) {
     todoCounter.updateCompleted(false);
   }
-  todoCounter.updateTotal();
+  todoCounter.updateTotal(false);
 }
 
 const newtodoValidator = new FormValidator(validationConfig, addTodoForm);
